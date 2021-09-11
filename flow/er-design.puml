@@ -1,0 +1,108 @@
+@startuml
+entity "t_issue" as tIssue {
+  *id : int <<generated>>
+  --
+  *code : string
+  *subject : string
+  *customerId : int
+  *callTypeId : int
+  projectId : int
+  repairCateId: int
+  problemID: int
+  otherIssue : string 
+  houseNumber : string
+  address : string
+  contactName: string
+  contactMobileNo: string
+  remark : string
+  createdBy : int
+  createdAt : datetime
+  updatedBy : int
+  updatedAt : datetime
+  closedBy : int
+  closedAt : datetime
+  isActive : bool
+}
+
+entity "m_customer" as mCustomer {
+  *id : int <<generated>>
+  --
+  *code : string
+  *name : string
+  *mobileNo : string
+  address : string
+  createdBy : int
+  createdAt : datetime
+  updatedBy : int
+  updatedAt : datetime
+  isActive : bool
+}
+
+entity "m_project" as mProject {
+  *id : int <<generated>>
+  --
+  *code : string
+  *name : string
+  remark : string
+  latitude : double
+  longitude : double
+  createdBy : int
+  createdAt : datetime
+  updatedBy : int
+  updatedAt : datetime
+  isActive : bool
+}
+
+entity "s_call_type" as sCallType {
+  *id : int
+  --
+  *code : string
+  *name : string
+  remark : string
+  createdBy : int
+  createdAt : datetime
+  updatedBy : int
+  updatedAt : datetime
+  isActive : bool
+}
+
+entity "s_repair_category" as sRepairCategory {
+  *id : int
+  --
+  *code : string
+  *name : string
+  remark : string
+  createdBy : int
+  createdAt : datetime
+  updatedBy : int
+  updatedAt : datetime
+  isActive : bool
+}
+
+entity "c_problem" as cProblem {
+  *id : int
+  --
+  *code : string
+  *name : string
+  remark : string
+  createdBy : int
+  createdAt : datetime
+  isActive : bool
+}
+
+
+tIssue ||..|| mCustomer
+tIssue ||..|| sCallType
+tIssue ||..o| mProject
+tIssue ||..o| sRepairCategory
+tIssue ||..o| cProblem
+
+@enduml
+' Additional relations for the Information Engineering notation.
+' An entity alias that maps to the class diagram class.
+' An additional visibility modifier * to identify mandatory attributes.
+' **Type Symbol**
+' Zero or One	|o--
+' Exactly One	||--
+' Zero or Many	}o--
+' One or Many	}|--
