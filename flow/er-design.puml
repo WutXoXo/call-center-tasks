@@ -15,6 +15,7 @@ entity "t_issue" as tIssue {
   contactName: string
   contactMobileNo: string
   remark : string
+  state : int
   createdBy : int
   createdAt : datetime
   updatedBy : int
